@@ -38,7 +38,7 @@ public class SysUserController {
     }
 
     @ApiOperation(value = "SysUser删除的方法",notes = "SysUser删除的方法")
-    @RequestMapping(value = "/deleteListSys/{id}",method = RequestMethod.DELETE)
+    @RequestMapping(value = "/deleteListSys/{id}",method = RequestMethod.POST)
     public void deleteListSys(@ApiParam(value = "删除所需ID",name = "id",required = true)
                                  @PathVariable("id") String id){
      sysUserService.deleteListSys(id);

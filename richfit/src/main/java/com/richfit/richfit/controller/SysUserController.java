@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
-import javax.persistence.Query;
 import java.util.List;
 
 /**
@@ -22,19 +21,17 @@ import java.util.List;
 @Api(value = "中油练习小demo")
 @RestController
 @RequestMapping(value = "/sys/user")
-public class SysUserController {
+public  class SysUserController {
 
     @Autowired
     private SysUserService sysUserService;
 
-
-
-
     @ApiOperation(value = "SysUser查询的方法",notes = "SysUser查询的方法")
-    @GetMapping(value = "",produces = {"application/json;charset=UTF-8"})
+    @RequestMapping(value = "/jk",method = RequestMethod.GET)
     @ResponseBody
     public List<SysUser> listSys(){
-        return sysUserService.listSys();
+        List<SysUser> sysUsers = sysUserService.listSys();
+        return sysUsers;
     }
 
     @ApiOperation(value = "SysUser删除的方法",notes = "SysUser删除的方法")
@@ -42,6 +39,18 @@ public class SysUserController {
     public void deleteListSys(@ApiParam(value = "删除所需ID",name = "id",required = true)
                                  @PathVariable("id") String id){
      sysUserService.deleteListSys(id);
+    }
+
+    /**
+     * 新增和修改
+     * @param sysUser
+     * @return
+     */
+    @ApiOperation(value = "SysUser新增的方法",notes = "SysUser新增的方法")
+    @RequestMapping(value = "/saveListSys",method = RequestMethod.POST)
+    public SysUser saveListSys(@RequestBody SysUser sysUser){
+        SysUser sysUser1 = sysUserService.saveListSys(sysUser);
+        return sysUser1;
     }
 
 

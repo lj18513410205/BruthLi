@@ -1,8 +1,7 @@
 package com.richfit.richfit.model;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -15,52 +14,24 @@ import java.io.Serializable;
  * @Version V1.0
  **/
 @Entity
-@Getter
-@Setter
-@Table(name = "LJ")
+@Data
+@Table(name = "SYS_USER")
 public class SysUser implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO,generator = "XSX")
+    @GenericGenerator(name = "XSX",strategy = "uuid")
+   // @SequenceGenerator(name = "XSX",sequenceName = "HALLOWEEN")
     @Column(name = "USERID")
     private String userId;
-
-    @Column(name = "USERNAME")
-    private String userName;
 
     @Column(name = "SEX")
     private String sex;
 
-    public String getUserId() {
-        return userId;
-    }
+    @Column(name = "USERNAME")
+    private String userName;
 
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
 
-    public String getUserName() {
-        return userName;
-    }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
 
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-
-    @Override
-    public String toString() {
-        return "SysUser{" +
-                "userId='" + userId + '\'' +
-                ", userName='" + userName + '\'' +
-                ", sex='" + sex + '\'' +
-                '}';
-    }
 }

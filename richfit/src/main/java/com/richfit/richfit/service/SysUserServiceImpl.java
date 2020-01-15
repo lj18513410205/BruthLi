@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @ClassName SysUserServiceImpl
@@ -24,6 +25,7 @@ public class SysUserServiceImpl implements SysUserService{
 
     @Autowired
     private SysUserDao sysUserDao;
+
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -53,10 +55,15 @@ public class SysUserServiceImpl implements SysUserService{
 */
     @Override
     @Transactional
-    public void deleteListSys(String id) {
+    public void deleteListSys(String id) throws Exception{
       //  Query query = entityManager.createQuery("delete from SysUser s where s.userId = :id ");
-        SysUser singleResult = (SysUser)entityManager.createQuery("select u from SysUser u where u.userId="+id).getSingleResult();
-        entityManager.remove(singleResult);
+       /* String hql = "select u from SysUser u where u.userId=:"+id;
+        Object singleResult = entityManager.createQuery(hql).getSingleResult();*/
+        Optional<SysUser> byId = sysUserDao.findById(id);
+        if (! byId.isPresent()){
+            throw new Exception();
+        };
+        entityManager.remove(byId.get());
         entityManager.flush();
     }
 

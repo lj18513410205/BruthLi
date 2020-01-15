@@ -5,9 +5,11 @@ import com.richfit.richfit.service.SysUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 
 import java.util.List;
 
@@ -21,10 +23,14 @@ import java.util.List;
 @Api(value = "中油练习小demo")
 @RestController
 @RequestMapping(value = "/sys/user")
+@Slf4j
 public  class SysUserController {
 
     @Autowired
     private SysUserService sysUserService;
+
+    @Autowired
+    private final static Logger logger = LoggerFactory.getLogger(SysUserController.class);
 
     @ApiOperation(value = "SysUser查询的方法",notes = "SysUser查询的方法")
     @RequestMapping(value = "/jk",method = RequestMethod.GET)
@@ -38,7 +44,11 @@ public  class SysUserController {
     @RequestMapping(value = "/deleteListSys/{id}",method = RequestMethod.POST)
     public void deleteListSys(@ApiParam(value = "删除所需ID",name = "id",required = true)
                                  @PathVariable("id") String id){
-     sysUserService.deleteListSys(id);
+     try {
+        sysUserService.deleteListSys(id);
+     }catch (Exception e){
+         logger.info("ID为空的！！！");
+     }
     }
 
     /**

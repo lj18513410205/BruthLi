@@ -8,7 +8,7 @@ public interface SysUserService {
 
     List<SysUser> listSys();
 
-    void deleteListSys(String id);
+    void deleteListSys(String id) throws Exception;
 
     SysUser saveListSys(SysUser sysUser);
 }

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>连喜灯登录页面</title>
+</head>
+    <body>
+        <form class="form-signin" method="post" action="/sys/login">
+            <h2 class="form-signin-heading">Please sign in</h2>
+            <p>
+                <label for="username" class="sr-only">账号</label>
+                <input type="text" id="username" name="uName" class="form-control" placeholder="Username" required="" autofocus="">
+            </p>
+            <p>
+                <label for="password" class="sr-only">密码</label>
+                <input type="password" id="password" name="pWord" class="form-control" placeholder="Password" required="">
+            </p>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </form>
+    </body>
+</html>

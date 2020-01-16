@@ -1,9 +1,10 @@
 package com.richfit.richfit.controller;
 
 import io.swagger.annotations.Api;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+
 
 /**
  * @ClassName SysController
@@ -17,9 +18,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/sys/userc")
 public class SysController {
     public static void main(String[] args) {
-        //JsonObject.fromObjact();
-        String str = " ";
-        boolean empty = StringUtils.isEmpty(str);
-        System.out.println(empty);
     }
 }

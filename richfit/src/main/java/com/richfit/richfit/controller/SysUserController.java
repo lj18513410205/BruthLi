@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -40,6 +41,7 @@ public  class SysUserController {
         return sysUsers;
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")//与@EnableGlobalMethodSecurity相呼应
     @ApiOperation(value = "SysUser删除的方法",notes = "SysUser删除的方法")
     @RequestMapping(value = "/deleteListSys/{id}",method = RequestMethod.POST)
     public void deleteListSys(@ApiParam(value = "删除所需ID",name = "id",required = true)
